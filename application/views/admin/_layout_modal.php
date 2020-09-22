@@ -3,13 +3,7 @@
 	<div class="row">
 		<div class="col-md-6 offset-md-3 mt-5">
 			<div class="card">
-				<div class="card-header">
-					<h5>Log in</h5>
-					<p>Please log in using your credentials</p>
-				</div>
-				<div class="card-body">
-					
-				</div>
+				<?php $this->load->view($subview); // subview is set in controller ?>
 				<div class="card-footer">
 					&copy; <?php echo $meta_title; ?>
 				</div>
