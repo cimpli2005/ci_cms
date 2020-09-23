@@ -19,6 +19,34 @@ class User_M extends MY_Model
 		) 
 	);
 
+	public $rules_admin = array(
+		'name' => array(
+			'field' => 'name', 
+			'label' => 'Name', 
+			'rules' => 'trim|required'
+		),
+		'order' => array(
+			'field' => 'order', 
+			'label' => 'Order', 
+			'rules' => 'trim|is_natural'
+		),
+		'email' => array(
+			'field' => 'email', 
+			'label' => 'Email', 
+			'rules' => 'trim|required|valid_email|callback__unique_email'
+		), 
+		'password' => array(
+			'field' => 'password', 
+			'label' => 'Password', 
+			'rules' => 'trim|matches[password_confirm]'
+		), 
+		'password_confirm' => array(
+			'field' => 'password_confirm', 
+			'label' => 'Confirm password', 
+			'rules' => 'trim|matches[password]'
+		) 
+	);
+
 	function __construct()
 	{
 		parent::__construct();
@@ -28,10 +56,10 @@ class User_M extends MY_Model
 	{
 		$user = $this->get_by(array(
 			'email' => $this->input->post('email'),
-			'password' => $this->hash($this->input->post('password')),
+			'password' => $this->hash($this->input->post('password'))
 		), TRUE);
 
-		if (count($user)) {
+		if (count((array)$user)) {
 			//Log in user
 			$data = array(
 				'name' => $user->name, 
@@ -39,7 +67,7 @@ class User_M extends MY_Model
 				'id' => $user->id, 
 				'loggedin' => TRUE, 
 			);
-			$this->session->userdata($data);
+			$this->session->set_userdata($data);
 		}
 	}
 
