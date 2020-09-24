@@ -8,11 +8,11 @@
 <table class="table">
 	<tr>
 		<td>Name</td>
-		<td><?php echo form_input('name','','class="form-control"'); ?></td>
+		<td><?php echo form_input('name',set_value('name', $user->name),'class="form-control"'); ?></td>
 	</tr>
 	<tr>
 		<td>Email</td>
-		<td><?php echo form_input('email','','class="form-control"'); ?></td>
+		<td><?php echo form_input('email',set_value('email', $user->email),'class="form-control"'); ?></td>
 	</tr>
 	<tr>
 		<td>Password</td>
