@@ -8,6 +8,10 @@
 <table class="table">
 	<tr>
 		<td>Title</td>
+		<td><?php echo form_dropdown('parent_id', $pages_no_parents, $this->input->post('parent_id') ? $this->input->post('parent_id') : $page->parent_id,'class="form-control"' ); ?></td>
+	</tr>
+	<tr>
+		<td>Title</td>
 		<td><?php echo form_input('title',set_value('title', $page->title),'class="form-control"'); ?></td>
 	</tr>
 	<tr>
@@ -16,7 +20,7 @@
 	</tr>
 	<tr>
 		<td>Body</td>
-		<td><?php echo form_textarea('body',set_value('body', $page->body),'class="form-control"'); ?></td>
+		<td><?php echo form_textarea('body',set_value('body', $page->body),'class="form-control" id="summernote"'); ?></td>
 	</tr>	
 	<tr>
 		<td></td>

@@ -31,6 +31,10 @@ class Page extends Admin_Controller
 			$this->data['page'] = $this->page_m->get_new();			
 		}
 
+		// Pages dropdown
+		$this->data['pages_no_parents'] = $this->page_m->get_no_parents();
+		dump($this->data['pages_no_parents']);
+
 		// Set the form
 		$rules = $this->page_m->rules;		
 		$this->form_validation->set_rules($rules);
@@ -38,7 +42,7 @@ class Page extends Admin_Controller
 		// Process the form
 		if ($this->form_validation->run() == TRUE) {
 			// We can save page and redirect
-			$data = $this->page_m->array_from_post(array('title', 'slug', 'order', 'body'));			
+			$data = $this->page_m->array_from_post(array('title', 'slug', 'body', 'parent_id'));			
 			$this->page_m->save($data, $id);
 			redirect('admin/page');			
 		}
