@@ -25,7 +25,7 @@ class Page_m extends MY_Model
 		'body' => array(
 			'field' => 'body', 
 			'label' => 'Body', 
-			'rules' => 'trim|required'
+			'rules' => 'required'
 		)
 	);
 

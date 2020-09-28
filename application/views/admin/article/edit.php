@@ -20,7 +20,7 @@
 	</tr>
 	<tr>
 		<td>Body</td>
-		<td><?php echo form_textarea('body',set_value('body', $article->body),'class="form-control" id="summernote"'); ?></td>
+		<td><?php echo form_textarea('body',set_value('body', $article->body, FALSE),'class="form-control" id="summernote"'); ?></td>
 	</tr>	
 	<tr>
 		<td></td>
