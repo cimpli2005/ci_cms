@@ -14,6 +14,9 @@
 					<a class="nav-link" href="<?php echo base_url('admin/page'); ?>">Pages</a>
 				</li>
 				<li class="nav-item">
+					<a class="nav-link" href="<?php echo base_url('admin/page/order'); ?>">Order Pages</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link" href="<?php echo base_url('admin/user'); ?>">Users</a>
 				</li>
 			</ul>			

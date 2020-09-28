@@ -1,4 +1,5 @@
 <?php
+
 echo get_ol($pages);
 
 function get_ol($array, $child = FALSE)

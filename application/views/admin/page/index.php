@@ -1,6 +1,6 @@
 <section>
 	<h2>Pages</h2>
-	<?php echo anchor('admin/page/edit', '<i class="fas fa-page-plus"></i> Add a page'); ?>
+	<?php echo anchor('admin/page/edit', '<i class="fas fa-file-alt"></i> Add a page'); ?>
 	<table class="table">
 		<thead>
 			<tr>

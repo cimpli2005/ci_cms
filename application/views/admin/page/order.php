@@ -5,9 +5,9 @@
 	<input type="button" class="btn btn-primary" id="save" value="save">
 </div>
 
-<script type="text/javascript">
+<script>
 	$(function() {
-		$.post('<?php echo site_url('admin/page/order_ajax'); ?>', {}, function(data){
+		$.post('<?php echo base_url('admin/page/order_ajax'); ?>', {}, function(data){
 			$('#orderResult').html(data);
 		});
 
@@ -15,7 +15,7 @@
 			oSortable = $('.sortable').nestedSortable('toArray');
 
 			$('#orderResult').slideUp(function(){
-				$.post('<?php echo site_url('admin/page/order_ajax'); ?>', { sortable: oSortable }, function(data){
+				$.post('<?php echo base_url('admin/page/order_ajax'); ?>', { sortable: oSortable }, function(data){
 					$('#orderResult').html(data);
 					$('#orderResult').slideDown();
 				});

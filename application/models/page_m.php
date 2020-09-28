@@ -66,7 +66,7 @@ class Page_m extends MY_Model
 	{
 		$pages = $this->db->get('pages')->result_array();
 
-		$arrayName = array();
+		$array = array();
 		foreach ($pages as $page) {
 			if (! $page['parent_id']) {
 				$array[$page['id']] = $page;
