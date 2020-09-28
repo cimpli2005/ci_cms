@@ -1,12 +1,12 @@
 <?php
 function btn_edit($uri)
 {
-	return anchor($uri, '<i class="fas fa-user-edit"></i>');
+	return anchor($uri, '<i class="fas fa-edit"></i>');
 }
 
 function btn_delete($uri)
 {
-	return anchor($uri, '<i class="fas fa-user-slash"></i>', array(
+	return anchor($uri, '<i class="fas fa-trash-alt"></i>', array(
 		'onclick' => "return confirm('You are about to delete a record. This cannot be undone. Are you sure?');"
 	));
 }

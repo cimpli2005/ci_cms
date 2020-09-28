@@ -32,11 +32,50 @@ class Page_m extends MY_Model
 	public function get_new()
 	{
 		$page = new stdClass();
-		$page->title ='';
-		$page->slug ='';		
+		$page->title = '';
+		$page->slug = '';		
 		$page->body = '';
 		$page->parent_id = 0;
 		return $page;
+	}
+
+	public function delete($id)
+	{
+		// Delete a page
+		parent::delete($id);
+
+		// Reset parent ID for its children
+		$this->db->set(array(
+			'parent_id' => 0
+		))->where('parent_id', $id)->update($this->_table_name);
+	}
+
+	public function save_order($pages)
+	{
+		if (count($pages)) {
+			foreach ($pages as $order => $page) {
+				if ($page['item_id'] != '') {
+					$data = array('parent_id' => (int) $page['parent_id'], 'order' => $order);
+					$this->db->set($data)->where($this->_primary_key, $page['item_id'])->update($this->_table_name);
+				}
+			}
+		}
+	}
+
+	public function get_nested()
+	{
+		$pages = $this->db->get('pages')->result_array();
+
+		$arrayName = array();
+		foreach ($pages as $page) {
+			if (! $page['parent_id']) {
+				$array[$page['id']] = $page;
+			} else {
+				$array[$page['parent_id']]['children'][] = $page;
+			}
+		}
+
+		return $array;
 	}
 
 	public function get_with_parent($id = NULL, $single = FALSE)
@@ -54,12 +93,16 @@ class Page_m extends MY_Model
 		$pages = parent::get();		
 
 		//Return key => value pair key
-		$array = array(0 => 'No parent');
-		if (count((array)$pages)) {
+		$array = array(
+			0 => 'No parent'
+		);
+		if (count($pages)) {
 			foreach ($pages as $page) {
 				$array[$page->id] = $page->title;
 			}
 		}
+
+		return $array;
 	}
 
 }

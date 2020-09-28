@@ -14,11 +14,32 @@ class Page extends Admin_Controller
 	public function index()
 	{
 		// Fetch all pages
-		$this->data['pages'] = $this->page_m->get();
+		$this->data['pages'] = $this->page_m->get_with_parent();
 
 		// Load view
 		$this->data['subview'] = 'admin/page/index';
 		$this->load->view('admin/_layout_main', $this->data);
+	}
+
+	public function order()
+	{
+		$this->data['sortable'] = TRUE;
+		$this->data['subview'] = 'admin/page/order';
+		$this->load->view('admin/_layout_main', $this->data);
+	}
+
+	public function order_ajax()
+	{
+		// Save order from ajax call
+		if (isset($_POST['sortable'])) {
+			$this->page_m->save_order($_POST['sortable']);
+		}
+
+		// Fetch all pages
+		$this->data['pages'] = $this->page_m->get_nested();
+
+		// Load view
+		$this->load->view('admin/page/order_ajax', $this->data);
 	}
 
 	public function edit($id = NULL)
@@ -32,8 +53,7 @@ class Page extends Admin_Controller
 		}
 
 		// Pages dropdown
-		$this->data['pages_no_parents'] = $this->page_m->get_no_parents();
-		dump($this->data['pages_no_parents']);
+		$this->data['pages_no_parents'] = $this->page_m->get_no_parents();		
 
 		// Set the form
 		$rules = $this->page_m->rules;		
@@ -42,7 +62,12 @@ class Page extends Admin_Controller
 		// Process the form
 		if ($this->form_validation->run() == TRUE) {
 			// We can save page and redirect
-			$data = $this->page_m->array_from_post(array('title', 'slug', 'body', 'parent_id'));			
+			$data = $this->page_m->array_from_post(array(
+				'title', 
+				'slug', 
+				'body', 
+				'parent_id'
+			));			
 			$this->page_m->save($data, $id);
 			redirect('admin/page');			
 		}

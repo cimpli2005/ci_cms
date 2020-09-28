@@ -7,7 +7,7 @@
 
 <table class="table">
 	<tr>
-		<td>Title</td>
+		<td>Parent</td>
 		<td><?php echo form_dropdown('parent_id', $pages_no_parents, $this->input->post('parent_id') ? $this->input->post('parent_id') : $page->parent_id,'class="form-control"' ); ?></td>
 	</tr>
 	<tr>
