@@ -11,12 +11,16 @@
 		<td><?php echo form_dropdown('parent_id', $pages_no_parents, $this->input->post('parent_id') ? $this->input->post('parent_id') : $page->parent_id,'class="form-control"' ); ?></td>
 	</tr>
 	<tr>
+		<td>Template</td>
+		<td><?php echo form_dropdown('template', array('page' => 'Page', 'news_archive' => 'News archive', 'homepage' => 'Homepage'), $this->input->post('template') ? $this->input->post('template') : $page->template,'class="form-control"' ); ?></td>
+	</tr>
+	<tr>
 		<td>Title</td>
 		<td><?php echo form_input('title',set_value('title', $page->title),'class="form-control"'); ?></td>
 	</tr>
 	<tr>
 		<td>Slug</td>
-		<td><?php echo form_input('slug',set_value('slug', $page->slug),'class="form-control"'); ?></td>
+		<td><?php echo form_input('slug',set_value('slug', $page->slug, FALSE),'class="form-control"'); ?></td>
 	</tr>
 	<tr>
 		<td>Body</td>

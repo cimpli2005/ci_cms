@@ -23,7 +23,7 @@ function get_menu($array, $child = FALSE)
 
 	if (count($array)) {
 		//$str .= $child == FALSE ? '<li class="nav-item">' . PHP_EOL : '<li class="nav-item dropdown">' . PHP_EOL;
-
+/*
 		foreach ($array as $item) {
 			if (isset($item['children']) && count($item['children'])) {
 				$str .= '<li class="nav-item dropdown">';				
@@ -38,8 +38,13 @@ function get_menu($array, $child = FALSE)
 
 			$str .= '</li>' . PHP_EOL;
 		}
-
+*/
 		//$str .= '</li>' . PHP_EOL;
+		foreach ($array as $item) {
+			$str .= '<li class="nav-item">';
+			$str .= '<a href="' . base_url(e($item['slug'])) . '" class="nav-link">' . e($item['title']) . '</a>';
+			$str .= '</li>' . PHP_EOL;
+		}
 	}
 
 	return $str;

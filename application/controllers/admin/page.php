@@ -66,6 +66,7 @@ class Page extends Admin_Controller
 				'title', 
 				'slug', 
 				'body', 
+				'template', 
 				'parent_id'
 			));			
 			$this->page_m->save($data, $id);
