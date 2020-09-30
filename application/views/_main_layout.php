@@ -1,7 +1,7 @@
 <?php $this->load->view('components/page_head'); ?>
 <div class="container">
 	<section>
-		<h1><?php echo config_item('site_name'); ?></h1>
+		<h1><?php echo anchor('', strtoupper(config_item('site_name'))); ?></h1>
 	</section>
 	
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,8 +26,7 @@
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-9"><h2>Main content</h2></div>
-		<div class="col-md-3"><h2>Recent news</h2></div>
+		<?php $this->load->view('templates/' . $subview); ?>
 	</div>
 </div>
 <?php $this->load->view('components/page_tail'); ?>
